@@ -14,40 +14,61 @@ public class FloorFileDigestion implements Runnable {
 
 
 
-public void run(){
+public void run()
+{
     
-    
+    Gson g = new Gson();
+    Reader reader = null;
     try 
     
         {
              //new Gson Instance
-            Gson g = new Gson();
+            
     
             //we create a reader
-            Reader reader = Files.newBufferedReader(Paths.get("src/Resources/FloorPlanFileTest.json"));
+            reader = new BufferedReader(new FileReader("C:/Users/chino/Documents/GitHub/Sweep-Monster/src/Resources/FloorPlanFileTest.json"));
+           
 
-            //TileMap tileMap = g.fromJson(reader, TileMap.class);
+             TilesArray tilesArray = g.fromJson(reader, TilesArray.class);
 
-            //System.out.println(tileMap);
+             //System.out.println(tilesArray);
 
-
-
-
-
-
-
-
-
-
-        } 
+            if(tilesArray != null){
+                for(Tile t: tilesArray.getTilesArray()){
+                   
+                        System.out.println(t.getTile());
+                   
+                    
+                    }
+                   
+                }
+            
+            else{
+                System.out.println("the list is empty");
+        }
+        
+    }
     catch (IOException e) 
         {
         // TODO Auto-generated catch block
         e.printStackTrace();
         }
+        finally {
+            if(reader != null)
+                {
+                try 
+                    {
+                    reader.close();
+                    } 
+                    catch (Exception e) 
+                    {
+                        e.printStackTrace();
+                    }
+                    
+                }
 
-
-
+                }
+    
 }
 
 

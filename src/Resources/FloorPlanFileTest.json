@@ -1,81 +1,81 @@
+{
+
+    
+    "floor": 
 [
-{ 
-    
-    "floor": {
 
-
-
-
-   "tileA1": {
-    "tile":["A1", "Wood", "2", "False"],
-    "upTile":["null", "Wood", "2", "False"],
-    "rightTile":["A2", "Wood", "2", "False"],
-    "downTile":["B1", "Wood", "2", "False"],
-    "leftTile":["null", "Wood", "2", "False"]
+ {
+    "tile":"A1",
+    "upTile":"null",
+    "rightTile":"A2",
+    "downTile":"B1",
+    "leftTile":"null"
 },
 
-     "tileA2":       {
-    "tile":["A2", "Wood", "2", "False"],
-    "upTile":["null", "Wood", "2", "False"],
-    "rightTile":["A2", "Wood", "2", "False"],
-    "downTile":["B2", "Wood", "2", "False"],
-    "leftTile":["A1", "Wood", "2", "False"]
+{
+    "tile":"A2",
+    "upTile":"null",
+    "rightTile":"A2",
+    "downTile":"B2",
+    "leftTile":"A1"
 },
-    "tileA3":        {
-    "tile":["A3", "Wood", "2", "False"],
-    "upTile":["null", "Wood", "2", "False"],
-    "rightTile":["null", "Wood", "2", "False"],
-    "downTile":["B3", "Wood", "2", "False"],
-    "leftTile":["A2", "Wood", "2", "False"]
+ {
+    "tile":"A3",
+    "upTile":"null",
+    "rightTile":"null",
+    "downTile":"B3",
+    "leftTile":"A2"
 },
 
-    "tileB1":      {
-    "tile":["B1", "Wood", "2", "False"],
-    "upTile":["A1", "Wood", "2", "False"],
-    "rightTile":["B2", "Wood", "2", "False"],
-    "downTile":["C1", "Wood", "2", "False"],
-    "leftTile":["null", "Wood", "2", "False"]
+        {
+    "tile":"B1",
+    "upTile":"A1",
+    "rightTile":"B2",
+    "downTile":"C1",
+    "leftTile":"null"
 },
-     "tileB2":       {
-    "tile":["B2", "Wood", "2", "False"],
-    "upTile":["A2", "Wood", "2", "False"],
-    "rightTile":["B3", "Wood", "2", "False"],
-    "downTile":["C2", "Wood", "2", "False"],
-    "leftTile":["B1", "Wood", "2", "False"]
+         {
+    "tile":"B2",
+    "upTile":"A2",
+    "rightTile":"B3",
+    "downTile":"C2",
+    "leftTile":"B1"
 },
-     "tileB3":      {
-    "tile":["B3", "Wood", "2", "False"],
-    "upTile":["A3", "Wood", "2", "False"],
-    "rightTile":["null", "Wood", "2", "False"],
-    "downTile":["C3", "Wood", "2", "False"],
-    "leftTile":["B1", "Wood", "2", "False"]
+        {
+    "tile":"B3",
+    "upTile":"A3",
+    "rightTile":"null",
+    "downTile":"C3",
+    "leftTile":"B1"
+
 },
-     "tileC1":       {
-    "tile":["C1", "Wood", "2", "False"],
-    "upTile":["B1", "Wood", "2", "False"],
-    "rightTile":["C2", "Wood", "2", "False"],
-    "downTile":["null", "Wood", "2", "False"],
-    "leftTile":["null", "Wood", "2", "False"]
+      {
+    "tile":"C1",
+    "upTile":"B1",
+    "rightTile":"C2",
+    "downTile":"null",
+    "leftTile":"null"
 },
-    "tileC2":       {
-    "tile":["C2", "Wood", "2", "False"],
-    "upTile":["B2", "Wood", "2", "False"],
-    "rightTile":["C3", "Wood", "2", "False"],
-    "downTile":["Null", "Wood", "2", "False"],
-    "leftTile":["C1", "Wood", "2", "False"]
+         {
+    "tile":"C2",
+    "upTile":"B2",
+    "rightTile":"C3",
+    "downTile":"Null",
+    "leftTile":"C1"
 },
-     "tileC3":       {
-    "tile":["C3", "Wood", "2", "False"],
-    "upTile":["B3", "Wood", "2", "False"],
-    "rightTile":["null", "Wood","2", "False"],
-    "downTile":["null", "Wood", "2", "False"],
-    "leftTile":["C2", "Wood", "2", "False"]}
+          {
+    "tile":"C3",
+    "upTile":"B3",
+    "rightTile":"null",
+    "downTile":"null",
+    "leftTile":"C2"
     
 }
 
-}
-
+    
 ]
+
+    }
 
 
 

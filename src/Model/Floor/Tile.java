@@ -1,77 +1,66 @@
 package src.Model.Floor;
 
+
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
+
 public class Tile {
 
-    private String coordinate;
-    private String tileType;
-    private int dirt;
-    private boolean isChargingStation;
-    
+@SerializedName("tile")
+@Expose
+private String tile;
+@SerializedName("upTile")
+@Expose
+private String upTile;
+@SerializedName("rightTile")
+@Expose
+private String rightTile;
+@SerializedName("downTile")
+@Expose
+private String downTile;
+@SerializedName("leftTile")
+@Expose
+private String leftTile;
 
-    public Tile(String coordinate, String tileType, int dirt, boolean isChargingStation ){
+public String getTile() {
+return tile;
+}
 
-        this.tileType = tileType;
-        this.dirt = dirt;
-        this.isChargingStation = isChargingStation;
-        this.coordinate = coordinate;
+public void setTile(String tile) {
+this.tile = tile;
+}
 
-    }
+public String getUpTile() {
+return upTile;
+}
 
+public void setUpTile(String upTile) {
+this.upTile = upTile;
+}
 
-    /**
-     * @return String return the tileType
-     */
-    public String getTileType() {
-        return tileType;
-    }
+public String getRightTile() {
+return rightTile;
+}
 
-    /**
-     * @param tileType the tileType to set
-     */
-    public void setTileType(String tileType) {
-        this.tileType = tileType;
-    }
+public void setRightTile(String rightTile) {
+this.rightTile = rightTile;
+}
 
-    /**
-     * @return int return the dirt
-     */
-    public int getDirt() {
-        return dirt;
-    }
+public String getDownTile() {
+return downTile;
+}
 
-    /**
-     * @param dirt the dirt to set
-     */
-    public void setDirt(int dirt) {
-        this.dirt = dirt;
-    }
+public void setDownTile(String downTile) {
+this.downTile = downTile;
+}
 
-    /**
-     * @return boolean return the isChargingStation
-     */
-    public boolean isIsChargingStation() {
-        return isChargingStation;
-    }
+public String getLeftTile() {
+return leftTile;
+}
 
-    /**
-     * @param isChargingStation the isChargingStation to set
-     */
-    public void setIsChargingStation(boolean isChargingStation) {
-        this.isChargingStation = isChargingStation;
-    }
-
-    /**
-     * @return String return the coordinate
-     */
-    public String getCoordinate() {
-        return coordinate;
-    }
-
-    /**
-     * @param coordinate the coordinate to set
-     */
-    public void setCoordinate(String coordinate) {
-        this.coordinate = coordinate;
-    }
+public void setLeftTile(String leftTile) {
+this.leftTile = leftTile;
+}
 
 }
