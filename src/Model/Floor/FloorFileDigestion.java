@@ -26,8 +26,9 @@ public void run()
             
     
             //we create a reader
-            reader = new BufferedReader(new FileReader("C:/Users/chino/Documents/GitHub/Sweep-Monster/src/Resources/FloorPlanFileTest.json"));
+            reader = new BufferedReader(new FileReader("src/Resources/FloorPlanFileTest.json"));
            
+            
 
              TilesArray tilesArray = g.fromJson(reader, TilesArray.class);
 
