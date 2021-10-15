@@ -30,12 +30,38 @@ public class SweepMonster {
         return true;
     }
 
-    public void run (TilesArray tilesArray) {
-        for(Tile t: tilesArray.getTilesArray()){
-            System.out.println("Clean this Tile");
-        }
+    public void run (int[][] floor) {
+        int n = floor.length;
+        int m = floor[0].length;
 
-        System.out.println("Finish the floor plan");
+        Stack<Integer> stack = new Stack<>();
+
+        stack.add(startY * m + startX);
+        // DFS
+        while (stack.empty() != false) {
+            int position = stack.pop();
+            int x = position % m;
+            int y = position / m;
+            if (floor[y][x] == 1) { // if this grid can be accessible
+                if (cleanedPosition.contains(position)) { // if has been cleaned, skip
+                    continue;
+                }
+                // TODO Clean it
+
+                int batteryConsume = 1;
+                currentBattery -= batteryConsume;
+                int dirtCapacityConsume = 1;
+                currentDirtCapacity -= dirtCapacityConsume;
+                cleanedPosition.add(y * m + x);
+                int nextPosition = findNextPositionAndDirection(floor, x, y);
+                if (nextPosition < 0) {
+                    // return to start point
+                    break;
+                } else {
+                    stack.add(nextPosition);
+                }
+            }
+        }
 
         // TODO return to the start
     }
@@ -80,5 +106,34 @@ public class SweepMonster {
         this.startY = startY;
     }
 
+    // if find next available position then return position value
+    // if not, return -1
+    private int findNextPositionAndDirection (int[][] floor, int curX, int curY) {
+        int n = floor.length;
+        int m = floor[0].length;
+
+        // search for up grid
+        if (curY - 1 >= 0 && floor[curY - 1][curX] == 1) {
+            setCurrentDirection(Direction.NORTH);
+            return curY * m + curX;
+        }
+        // search for left grid
+        if (curX - 1 >= 0 && floor[curY][curX - 1] == 1) {
+            setCurrentDirection(Direction.WEST);
+            return curY * m + curX;
+        }
+        // search for down grid
+        if (curY + 1 < n && floor[curY + 1][curX] == 1) {
+            setCurrentDirection(Direction.SOUTH);
+            return curY * m + curX;
+        }
+        // search for right grid
+        if (curX + 1 < m && floor[curY][curX + 1] == 1) {
+            setCurrentDirection(Direction.EAST);
+            return curY * m + curX;
+        }
+
+        return -1;
+    }
 }
 
