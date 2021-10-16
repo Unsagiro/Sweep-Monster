@@ -1,0 +1,94 @@
+{
+
+    
+    "TilesArray": 
+[
+
+ {
+    "tile":"A1",
+    "upTile":"null",
+    "rightTile":"A2",
+    "downTile":"B1",
+    "leftTile":"null"
+},
+
+{
+    "tile":"A2",
+    "upTile":"null",
+    "rightTile":"A2",
+    "downTile":"B2",
+    "leftTile":"A1"
+},
+ {
+    "tile":"A3",
+    "upTile":"null",
+    "rightTile":"null",
+    "downTile":"B3",
+    "leftTile":"A2"
+},
+
+        {
+    "tile":"B1",
+    "upTile":"A1",
+    "rightTile":"B2",
+    "downTile":"C1",
+    "leftTile":"null"
+},
+         {
+    "tile":"B2",
+    "upTile":"A2",
+    "rightTile":"B3",
+    "downTile":"C2",
+    "leftTile":"B1"
+},
+        {
+    "tile":"B3",
+    "upTile":"A3",
+    "rightTile":"null",
+    "downTile":"C3",
+    "leftTile":"B1"
+
+},
+      {
+    "tile":"C1",
+    "upTile":"B1",
+    "rightTile":"C2",
+    "downTile":"null",
+    "leftTile":"null"
+},
+         {
+    "tile":"C2",
+    "upTile":"B2",
+    "rightTile":"C3",
+    "downTile":"Null",
+    "leftTile":"C1"
+},
+          {
+    "tile":"C3",
+    "upTile":"B3",
+    "rightTile":"null",
+    "downTile":"null",
+    "leftTile":"C2"
+    
+}
+
+    
+]
+
+    }
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
