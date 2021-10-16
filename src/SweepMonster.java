@@ -36,7 +36,7 @@ public class SweepMonster {
 
     public void run (TilesArray tilesArray) {
         for(Tile t: tilesArray.getTilesArray()){
-            System.out.println(t.getTile() + " has been clean.");
+            System.out.println(t.getTile() + " has been clean!");
         }
 
         System.out.println("Finish the floor plan");
