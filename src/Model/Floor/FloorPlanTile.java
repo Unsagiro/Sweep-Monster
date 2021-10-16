@@ -3,6 +3,8 @@ package src.Model.Floor;
 
 
 
+import src.Tile;
+
 import java.io.Serializable;
 
 public class FloorPlanTile implements Serializable {

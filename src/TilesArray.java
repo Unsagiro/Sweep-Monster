@@ -1,4 +1,4 @@
-package src.Model.Floor;
+package src;
 
 
 import java.util.List;
