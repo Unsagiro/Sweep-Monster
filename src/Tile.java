@@ -1,4 +1,4 @@
-package src.Model.Floor;
+package src;
 
 
 import com.google.gson.annotations.Expose;

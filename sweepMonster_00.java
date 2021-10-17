@@ -1,6 +1,8 @@
+import src.Direction;
+
 import java.util.*;
 
-public class SweepMonster {
+public class sweepMonster_00 {
     private static final int MAX_BATTERY = 250;
     private static final int MAX_DIRT_CAPACITY = 50;
 
