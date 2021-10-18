@@ -14,4 +14,4 @@ Writing user roles, epics, stories and prioritize them to provide the MVP at the
 Conducting source code management by doing branching strategy and using Github repository
 
 # Current Progress:
-Sprint 1 done.
+Sprint 1 done
