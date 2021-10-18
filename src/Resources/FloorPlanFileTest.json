@@ -1,6 +1,7 @@
+
 {
 
-    
+
     "TilesArray": 
 [
 
@@ -9,7 +10,9 @@
     "upTile":"null",
     "rightTile":"A2",
     "downTile":"B1",
-    "leftTile":"null"
+    "leftTile":"null",
+   "obstaclePresent": "false", "doorPresent": "false", "stairsEdge":"false",
+   "chargingStation":"true","floorType": "Bare","dirt": "3"
 },
 
 {
@@ -17,14 +20,18 @@
     "upTile":"null",
     "rightTile":"A2",
     "downTile":"B2",
-    "leftTile":"A1"
+    "leftTile":"A1",
+  "obstaclePresent": "false", "doorPresent": "false", "stairsEdge":"false",
+  "chargingStation":"false","floorType": "Bare","dirt": "1"
 },
  {
     "tile":"A3",
     "upTile":"null",
     "rightTile":"null",
     "downTile":"B3",
-    "leftTile":"A2"
+    "leftTile":"A2",
+   "obstaclePresent": "false", "doorPresent": "false", "stairsEdge":"false",
+   "chargingStation":"false","floorType": "Bare","dirt": "2"
 },
 
         {
@@ -32,21 +39,27 @@
     "upTile":"A1",
     "rightTile":"B2",
     "downTile":"C1",
-    "leftTile":"null"
+    "leftTile":"null",
+    "obstaclePresent": "false", "doorPresent": "false", "stairsEdge":"false",
+    "chargingStation":"false","floorType": "lowPile","dirt": "0"
 },
          {
     "tile":"B2",
     "upTile":"A2",
     "rightTile":"B3",
     "downTile":"C2",
-    "leftTile":"B1"
+    "leftTile":"B1",
+    "obstaclePresent": "false", "doorPresent": "false", "stairsEdge":"false",
+    "chargingStation":"false","floorType": "lowPile","dirt": "2"
 },
         {
     "tile":"B3",
     "upTile":"A3",
     "rightTile":"null",
     "downTile":"C3",
-    "leftTile":"B1"
+    "leftTile":"B1",
+    "obstaclePresent": "false", "doorPresent": "false", "stairsEdge":"false",
+    "chargingStation":"false","floorType": "lowPile","dirt": "3"
 
 },
       {
@@ -54,21 +67,27 @@
     "upTile":"B1",
     "rightTile":"C2",
     "downTile":"null",
-    "leftTile":"null"
+    "leftTile":"null",
+    "obstaclePresent": "false", "doorPresent": "false", "stairsEdge":"false",
+    "chargingStation":"false","floorType": "highPile","dirt": "3"
 },
          {
     "tile":"C2",
     "upTile":"B2",
     "rightTile":"C3",
     "downTile":"Null",
-    "leftTile":"C1"
+    "leftTile":"C1",
+    "obstaclePresent": "false", "doorPresent": "false", "stairsEdge":"false",
+    "chargingStation":"false","floorType": "highPile","dirt": "2"
 },
           {
     "tile":"C3",
     "upTile":"B3",
     "rightTile":"null",
     "downTile":"null",
-    "leftTile":"C2"
+    "leftTile":"C2",
+    "obstaclePresent": "false", "doorPresent": "false", "stairsEdge":"false",
+    "chargingStation":"false","floorType": "highPile","dirt": "1"
     
 }
 
