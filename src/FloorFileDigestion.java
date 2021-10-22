@@ -1,11 +1,8 @@
 package src;
 
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 
 public class FloorFileDigestion implements Runnable {
@@ -17,52 +14,54 @@ public class FloorFileDigestion implements Runnable {
         Reader reader = null;
         try
 
-            {
-                 //new Gson Instance
+        {
+            //new Gson Instance
 
-                //we create a reader
-                reader = new BufferedReader(new FileReader("./Sweep-Monster/src/Resources/FloorPlanFileTest.json"));
-                 tilesArray = g.fromJson(reader, TilesArray.class);
+            //we create a reader
+            reader = new BufferedReader(new FileReader("./src/Resources/FloorPlanFileTest.json"));
+            tilesArray = g.fromJson(reader, TilesArray.class);
 
-                 //System.out.println(tilesArray);
+            //System.out.println(tilesArray);
 
-                if(tilesArray != null){
-                    for(Tile t: tilesArray.getTilesArray()){
+            if(tilesArray != null){
+                System.out.println("Reading Floor Plan:");
+                for(Tile t: tilesArray.getTilesArray()){
 
-//                            System.out.println(t.getTile());
+                    System.out.println("Tile " + t.getTile() + ", X: " + t.getX() + ", Y: " + t.getY() + ",Obstacle Type: " + t.getObstacleType() + ",Dirt: " + t.getDirt());
 
 
-                        }
+                }
 
-                    }
+            }
 
-                else{
-                    System.out.println("the list is empty");
+            else{
+                System.out.println("The floor plan is not legit!");
             }
 
         }
         catch (IOException e)
-            {
+        {
             // TODO Auto-generated catch block
             e.printStackTrace();
-            }
-            finally {
-                if(reader != null)
-                    {
-                    try
-                        {
-                        reader.close();
-                        }
-                        catch (Exception e)
-                        {
-                            e.printStackTrace();
-                        }
+        }
+        finally {
+            if(reader != null)
+            {
+                try
+                {
+                    reader.close();
+                }
+                catch (Exception e)
+                {
+                    e.printStackTrace();
+                }
 
-                    }
+            }
         }
     }
 
     public TilesArray getTilesArray() {
         return tilesArray;
     }
+
 }
