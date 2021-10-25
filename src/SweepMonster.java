@@ -102,16 +102,16 @@ public class SweepMonster {
         int bound = TilesArr.getScale()-1;
         Tile tile = null;
         switch (currentDirection) {
-            case NORTH:
+            case UP:
                 if(currentX-1 >= 0) tile=TilesArr.getTileInfo(currentX-1, currentY);
                 break;
-            case EAST:
+            case RIGHT:
                 if(currentY+1 <= bound) tile = TilesArr.getTileInfo(currentX, currentY+1);
                 break;
-            case SOUTH:
+            case DOWN:
                 if(currentX+1 <= bound) tile = TilesArr.getTileInfo(currentX+1, currentY);
                 break;
-            case WEST:
+            case LEFT:
                 if(currentY-1 >= 0) tile = TilesArr.getTileInfo(currentX, currentY-1);
                 break;
             default:

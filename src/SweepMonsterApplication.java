@@ -16,7 +16,7 @@ public class SweepMonsterApplication{
 
 
         SweepMonster robot = new SweepMonster();
-        if (!robot.init(250,50, Direction.EAST, 0, 0)){
+        if (!robot.init(250,50, Direction.RIGHT, 0, 0)){
             System.out.println("Something is wrong, cannot start the cleaning cycle!");
         }else{
             System.out.println("\nLet's clean this up!");
