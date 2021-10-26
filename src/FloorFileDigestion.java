@@ -8,6 +8,7 @@ import com.google.gson.Gson;
 public class FloorFileDigestion implements Runnable {
 
     private TilesArray tilesArray;
+    private FloorPlanArray floorPlanArray = new FloorPlanArray();
     public void run()
     {
         Gson g = new Gson();
@@ -26,12 +27,16 @@ public class FloorFileDigestion implements Runnable {
             if(tilesArray != null){
                 System.out.println("Reading Floor Plan:");
                 for(Tile t: tilesArray.getTilesArray()){
-
+                    int x = t.getXVal();
+                    int y = t.getYVal();
+                    floorPlanArray.setCapacity(x+1, y+1);
+                    floorPlanArray.setTile(x, y, t);
+                    if (t.getChargingStation().equals("true")) {
+                        floorPlanArray.setStartX(x);
+                        floorPlanArray.setStartY(y);
+                    }
                     System.out.println("Tile " + t.getTile() + ", X: " + t.getX() + ", Y: " + t.getY() + ",Obstacle Type: " + t.getObstacleType() + ",Dirt: " + t.getDirt());
-
-
                 }
-
             }
 
             else{
@@ -63,5 +68,10 @@ public class FloorFileDigestion implements Runnable {
     public TilesArray getTilesArray() {
         return tilesArray;
     }
+
+    public FloorPlanArray getFloorPlanArray() {
+        return floorPlanArray;
+    }
+
 
 }

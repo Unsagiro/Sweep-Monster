@@ -1,5 +1,6 @@
 package src;
 
+import javafx.util.Pair;
 import src.Direction;
 
 import java.util.*;
@@ -19,8 +20,8 @@ public class SweepMonster {
     private int currentY;
 
     private boolean changedToSouth = false;
-
-    private Set<Integer> cleanedPosition = new HashSet<>();
+    private FloorPlanArray floorPlanArray;
+    private ArrayList<Pair<Integer, Integer>> cleanedPosition = new ArrayList<>();
     private HashMap<Direction, String> neighborMap = new HashMap<Direction, String>();
 
     // return false indicates SweepMonster could not start
@@ -57,39 +58,23 @@ public class SweepMonster {
 
     //I tested the navigation/visiting process by going through the whole floor plan zig-zag for now
     //just to show the dynamically fetch the next tile's function is working (Feel free to replace the code inside)
-    public void navigation(TilesArray tilesArr) throws InterruptedException {
-        Tile currentTile = getFirstTile(tilesArr);
-        while(!(cleanedPosition.size() == tilesArr.getTotal())){
+    public void navigation(FloorPlanArray floorPlanArray) throws InterruptedException {
+        this.floorPlanArray = floorPlanArray;
+        Tile currentTile = getFirstTile();
+        Stack<Tile> stack = new Stack<>();
+
+        stack.add(currentTile);
+        while (stack.empty() != false) {
+            currentTile = stack.pop();
+            currentY = currentTile.getYVal();
+            currentX = currentTile.getXVal();
+
+            getNeighbourhood(stack);
             //After finished cleaning the current tile (I skipped cleaning process here)
-            cleanedPosition.add(currentTile.getXVal()*tilesArr.getScale()+currentTile.getYVal());
+            cleanedPosition.add(new Pair<>(currentX, currentY));
             System.out.println(currentTile.getTile() + " has been cleaned!");
             //Fake the cleaning time
             TimeUnit.SECONDS.sleep(1);
-            //Trying to find the next tile and going forward
-            if(changedToSouth){
-                currentDirection = Direction.WEST;
-                changedToSouth = false;
-            }
-            Tile nextTile = getNextTileInfo(tilesArr);
-
-            if(nextTile == null){
-                //change direction
-                if(currentTile.getDownTile().equals("null")){
-                    if(currentTile.getLeftTile().equals("null")){
-                        currentDirection = Direction.EAST;
-                    }else {
-                        currentDirection = Direction.WEST;
-                    }
-                }else{
-                    currentDirection = Direction.SOUTH;
-                    changedToSouth = true;
-                }
-
-                nextTile = getNextTileInfo(tilesArr);
-            }
-            currentTile = nextTile;
-            currentX = currentTile.getXVal();
-            currentY = currentTile.getYVal();
         }
         System.out.println("The clean is done!");
     }
@@ -124,13 +109,6 @@ public class SweepMonster {
     public boolean isBlocked(Tile t){
         if(t.getObstacleType().equals("open")) return false;
         else return true;
-    }
-
-
-
-
-    public Tile getFirstTile(TilesArray tilesArr){
-        return tilesArr.getTile(0);
     }
 
     public int getCurrentBattery() {
@@ -173,6 +151,60 @@ public class SweepMonster {
         this.startY = startY;
     }
 
+    private Tile getFirstTile(){
+        return this.floorPlanArray.getStartTile();
+    }
+
+    private void getNeighbourhood(Stack<Tile> stack) {
+
+        int height = this.floorPlanArray.getHeight();
+        if(currentX - 1 >= 0 && isAccessible(currentX - 1, currentY)) {
+            Tile tile = this.floorPlanArray.getTile(currentX - 1, currentY);
+            tile.setDirection(Direction.LEFT);
+            stack.add(tile);
+        }
+
+        if(currentX + 1 < this.floorPlanArray.getWidth(currentY) && isAccessible(currentX + 1, currentY)) {
+            Tile tile = this.floorPlanArray.getTile(currentX + 1, currentY);
+            tile.setDirection(Direction.RIGHT);
+            stack.add(tile);
+        }
+
+        if(currentY - 1 >= 0 && isAccessible(currentX, currentY - 1)) {
+            Tile tile = this.floorPlanArray.getTile(currentX, currentY - 1);
+            tile.setDirection(Direction.UP);
+            stack.add(tile);
+        }
+
+        if(currentX + 1 < height && isAccessible(currentX, currentY + 1)) {
+            Tile tile = this.floorPlanArray.getTile(currentX, currentY + 1);
+            tile.setDirection(Direction.DOWN);
+            stack.add(tile);
+        }
+    }
+
+    private boolean isAccessible (int x, int y) {
+        Tile tile = this.floorPlanArray.getTile(x, y);
+        if (tile.getObstacleType().equals("obstacle")) {
+            return false;
+        }
+        if (isCleaned(x, y)) {
+            return false;
+        }
+        // TODO check power
+        // TODO check dirt capacity
+        return true;
+    }
+
+    private boolean isCleaned (int x, int y) {
+        for (Pair<Integer, Integer> p: cleanedPosition) {
+            if (p.getKey().equals(x) && p.getValue().equals(y)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }
 
 

@@ -20,7 +20,7 @@ public class SweepMonsterApplication{
             System.out.println("Something is wrong, cannot start the cleaning cycle!");
         }else{
             System.out.println("\nLet's clean this up!");
-            robot.navigation(digest.getTilesArray());
+            robot.navigation(digest.getFloorPlanArray());
         }
 
     }

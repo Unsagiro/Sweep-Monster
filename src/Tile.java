@@ -39,6 +39,8 @@ public class Tile {
     @Expose
     private String dirt;
 
+    private Direction direction;
+
     public String getTile() {
         return tile;
     }
@@ -119,4 +121,11 @@ public class Tile {
         this.dirt = dirt;
     }
 
+    public Direction getDirection() {
+        return direction;
+    }
+
+    public void setDirection(Direction direction) {
+        this.direction = direction;
+    }
 }

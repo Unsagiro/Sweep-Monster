@@ -1,0 +1,370 @@
+
+{
+
+
+  "TilesArray":
+  [
+
+    {
+      "tile":"A1",
+      "x": "0",
+      "y": "0",
+      "upTile":"B1",
+      "rightTile":"A2",
+      "downTile":"null",
+      "leftTile":"null",
+      "obstacleType": "open",
+      "chargingStation":"true",
+      "floorType": "highPile",
+      "dirt": "3"
+    },
+
+    {
+      "tile":"A2",
+      "x": "0",
+      "y": "1",
+      "upTile":"B2",
+      "rightTile":"A2",
+      "downTile":"null",
+      "leftTile":"A1",
+      "obstacleType": "open",
+      "chargingStation":"false",
+      "floorType": "highPile",
+      "dirt": "1"
+    },
+    {
+      "tile":"A3",
+      "x": "0",
+      "y": "2",
+      "upTile":"B3",
+      "rightTile":"A4",
+      "downTile":"null",
+      "leftTile":"A2",
+      "obstacleType": "open",
+      "chargingStation":"false",
+      "floorType": "highPile",
+      "dirt": "2"
+    },
+
+    {
+      "tile":"A4",
+      "x": "0",
+      "y": "3",
+      "upTile":"B3",
+      "rightTile":"A4",
+      "downTile":"null",
+      "leftTile":"A2",
+      "obstacleType": "open",
+      "chargingStation":"false",
+      "floorType": "highPile",
+      "dirt": "2"
+    },
+
+    {
+      "tile":"B1",
+      "x": "1",
+      "y": "0",
+      "upTile":"C1",
+      "rightTile":"B2",
+      "downTile":"A1",
+      "leftTile":"null",
+      "obstacleType": "open",
+      "chargingStation":"false",
+      "floorType": "highPile",
+      "dirt": "0"
+    },
+    {
+      "tile":"B2",
+      "x": "1",
+      "y": "1",
+      "upTile":"C2",
+      "rightTile":"B3",
+      "downTile":"A2",
+      "leftTile":"B1",
+      "obstacleType": "obstacle",
+      "chargingStation":"false",
+      "floorType": "highPile",
+      "dirt": "2"
+    },
+    {
+      "tile":"B3",
+      "x": "1",
+      "y": "2",
+      "upTile":"C3",
+      "rightTile":"B4",
+      "downTile":"A3",
+      "leftTile":"B1",
+      "obstacleType": "open",
+      "chargingStation":"false",
+      "floorType": "highPile",
+      "dirt": "3"
+    },
+    {
+      "tile":"B4",
+      "x": "1",
+      "y": "3",
+      "upTile":"C4",
+      "rightTile":"null",
+      "downTile":"A4",
+      "leftTile":"B3",
+      "obstacleType": "stairs",
+      "chargingStation":"false",
+      "floorType": "highPile",
+      "dirt": "3"
+    },
+    {
+      "tile":"C1",
+      "x":"2",
+      "y":"0",
+      "upTile":"D1",
+      "rightTile":"C2",
+      "downTile":"B1",
+      "leftTile":"null",
+      "obstacleType": "open",
+      "chargingStation":"false",
+      "floorType": "highPile",
+      "dirt": "3"
+    },
+    {
+      "tile":"C2",
+      "x": "2",
+      "y": "1",
+      "upTile":"D2",
+      "rightTile":"C3",
+      "downTile":"B2",
+      "leftTile":"C1",
+      "obstacleType": "open",
+      "chargingStation":"false",
+      "floorType": "highPile",
+      "dirt": "2"
+    },
+    {
+      "tile":"C3",
+      "x": "2",
+      "y": "2",
+      "upTile":"D3",
+      "rightTile":"D4",
+      "downTile":"B3",
+      "leftTile":"C2",
+      "obstacleType": "open",
+      "chargingStation":"false",
+      "floorType": "highPile",
+      "dirt": "1"
+
+    },
+    {
+      "tile":"C4",
+      "x": "2",
+      "y": "3",
+      "upTile":"D4",
+      "rightTile":"null",
+      "downTile":"B4",
+      "leftTile":"C3",
+      "obstacleType": "stairs",
+      "chargingStation":"false",
+      "floorType": "highPile",
+      "dirt": "1"
+
+    },
+    {
+      "tile":"D1",
+      "x":"3",
+      "y":"0",
+      "upTile":"E1",
+      "rightTile":"D2",
+      "downTile":"C1",
+      "leftTile":"null",
+      "obstacleType": "object",
+      "chargingStation":"false",
+      "floorType": "Bare",
+      "dirt": "0"
+    },
+    {
+      "tile":"D2",
+      "x": "3",
+      "y": "1",
+      "upTile":"E2",
+      "rightTile":"D3",
+      "downTile":"C2",
+      "leftTile":"D1",
+      "obstacleType": "open",
+      "chargingStation":"false",
+      "floorType": "highPile",
+      "dirt": "0"
+    },
+    {
+      "tile":"D3",
+      "x": "3",
+      "y": "2",
+      "upTile":"E3",
+      "rightTile":"D4",
+      "downTile":"C3",
+      "leftTile":"D2",
+      "obstacleType": "object",
+      "chargingStation":"false",
+      "floorType": "Bare",
+      "dirt": "1"
+
+    },
+    {
+      "tile":"D4",
+      "x": "3",
+      "y": "3",
+      "upTile":"E4",
+      "rightTile":"null",
+      "downTile":"C4",
+      "leftTile":"D3",
+      "obstacleType": "object",
+      "chargingStation":"false",
+      "floorType": "Bare",
+      "dirt": "1"
+
+    },
+    {
+      "tile":"E1",
+      "x":"4",
+      "y":"0",
+      "upTile":"F1",
+      "rightTile":"E2",
+      "downTile":"D1",
+      "leftTile":"null",
+      "obstacleType": "open",
+      "chargingStation":"false",
+      "floorType": "lowPile",
+      "dirt": "0"
+    },
+    {
+      "tile":"E2",
+      "x": "4",
+      "y": "1",
+      "upTile":"F2",
+      "rightTile":"E3",
+      "downTile":"D2",
+      "leftTile":"E1",
+      "obstacleType": "open",
+      "chargingStation":"false",
+      "floorType": "lowPile",
+      "dirt": "2"
+    },
+    {
+      "tile":"E3",
+      "x": "4",
+      "y": "2",
+      "upTile":"F3",
+      "rightTile":"E4",
+      "downTile":"D3",
+      "leftTile":"E2",
+      "obstacleType": "open",
+      "chargingStation":"false",
+      "floorType": "lowPile",
+      "dirt": "1"
+
+    },
+    {
+      "tile":"E4",
+      "x": "4",
+      "y": "3",
+      "upTile":"F4",
+      "rightTile":"null",
+      "downTile":"D4",
+      "leftTile":"E3",
+      "obstacleType": "open",
+      "chargingStation":"false",
+      "floorType": "lowPile",
+      "dirt": "1"
+
+    },
+    {
+      "tile":"F1",
+      "x":"5",
+      "y":"0",
+      "upTile":"null",
+      "rightTile":"F2",
+      "downTile":"E1",
+      "leftTile":"null",
+      "obstacleType": "open",
+      "chargingStation":"false",
+      "floorType": "lowPile",
+      "dirt": "3"
+    },
+    {
+      "tile":"F2",
+      "x": "5",
+      "y": "1",
+      "upTile":"null",
+      "rightTile":"F3",
+      "downTile":"E2",
+      "leftTile":"F1",
+      "obstacleType": "open",
+      "chargingStation":"false",
+      "floorType": "lowPile",
+      "dirt": "2"
+    },
+    {
+      "tile":"F3",
+      "x": "5",
+      "y": "2",
+      "upTile":"null",
+      "rightTile":"F4",
+      "downTile":"E3",
+      "leftTile":"F2",
+      "obstacleType": "open",
+      "chargingStation":"false",
+      "floorType": "lowPile",
+      "dirt": "1"
+
+    },
+    {
+      "tile":"F4",
+      "x": "5",
+      "y": "3",
+      "upTile":"null",
+      "rightTile":"F5",
+      "downTile":"E4",
+      "leftTile":"F3",
+      "obstacleType": "open",
+      "chargingStation":"false",
+      "floorType": "lowPile",
+      "dirt": "1"
+
+    },
+    {
+      "tile":"F5",
+      "x": "5",
+      "y": "4",
+      "upTile":"null",
+      "rightTile":"null",
+      "downTile":"null",
+      "leftTile":"F4",
+      "obstacleType": "open",
+      "chargingStation":"false",
+      "floorType": "Bare",
+      "dirt": "1"
+
+    }
+
+
+  ]
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
