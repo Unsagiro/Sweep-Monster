@@ -1,6 +1,9 @@
 package src;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 
 import com.google.gson.Gson;
 
@@ -23,13 +26,27 @@ public class FloorFileDigestion implements Runnable {
             tilesArray = g.fromJson(reader, TilesArray.class);
 
             //System.out.println(tilesArray);
-
+            // key is the y value of Tile, value is the max x value of Tile
+            // Use this map to store the width of each y
+            HashMap<Integer, Integer> sizeOfMap = new HashMap<>();
             if(tilesArray != null){
+                for(Tile t: tilesArray.getTilesArray()) {
+                    if (sizeOfMap.containsKey(t.getYVal())) {
+                        int currentMaxX = sizeOfMap.get(t.getYVal());
+                        if (currentMaxX < t.getXVal()) {
+                            sizeOfMap.put(t.getYVal(), t.getXVal());
+                        }
+                    } else {
+                        sizeOfMap.put(t.getYVal(), t.getXVal());
+                    }
+                }
+
+                floorPlanArray.initial(sizeOfMap);
+
                 System.out.println("Reading Floor Plan:");
                 for(Tile t: tilesArray.getTilesArray()){
                     int x = t.getXVal();
                     int y = t.getYVal();
-                    floorPlanArray.setCapacity(x+1, y+1);
                     floorPlanArray.setTile(x, y, t);
                     if (t.getChargingStation().equals("true")) {
                         floorPlanArray.setStartX(x);

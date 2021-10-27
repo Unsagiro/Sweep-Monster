@@ -1,6 +1,8 @@
 package src;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -10,6 +12,12 @@ public class FloorPlanArray {
     private static ArrayList<ArrayList<Tile>> FloorPlanArray = new ArrayList<>();
     private int startX;
     private int startY;
+
+    public void initial(HashMap<Integer, Integer> sizeOfMap) {
+        for (int i = 0; i < sizeOfMap.size(); i++) {
+            FloorPlanArray.add(new ArrayList<Tile>(Collections.nCopies(sizeOfMap.get(i) + 1, null)));
+        }
+    }
 
     public int getStartX() {
         return startX;
@@ -65,12 +73,6 @@ public class FloorPlanArray {
         }
     }
 
-    public void setCapacity(int minWidth, int y) {
-        setMinHeight(y);
-        if (getWidth(y) < minWidth) {
-            FloorPlanArray.get(y).ensureCapacity(minWidth);
-        }
-    }
 //    public int getTotal() {return tilesArray.size();}
 
     //help get particular tile info
