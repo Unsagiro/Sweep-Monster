@@ -14,9 +14,10 @@ public class SweepMonsterApplication{
         FloorFileDigestion digest = new FloorFileDigestion();
         digest.run();
 
+        RoboMemory memory = new RoboMemory();
 
         SweepMonster robot = new SweepMonster();
-        if (!robot.init(250,50, Direction.EAST, 0, 0)){
+        if (!robot.init(250,50, Direction.EAST, 0, 0, memory)){
             System.out.println("Something is wrong, cannot start the cleaning cycle!");
         }else{
             System.out.println("\nLet's clean this up!");

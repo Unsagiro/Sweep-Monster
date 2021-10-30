@@ -18,17 +18,19 @@ public class SweepMonster {
     private int currentX;
     private int currentY;
 
+    private RoboMemory memory;
+
     private boolean changedToSouth = false;
 
-    private Set<Integer> cleanedPosition = new HashSet<>();
-    private HashMap<Direction, String> neighborMap = new HashMap<Direction, String>();
+    
+  
 
     // return false indicates SweepMonster could not start
-    public boolean init(int currentBattery, int currentDirtCapacity, Direction currentDirection, int startX, int startY) {
+    public boolean init(int currentBattery, int currentDirtCapacity, Direction currentDirection, int startX, int startY, RoboMemory memory) {
         setCurrentBattery(currentBattery);
         setCurrentDirtCapacity(currentDirtCapacity);
         setCurrentDirection(currentDirection);
-
+        setMemory(memory);
         setStartX(startX);
         setStartY(startY);
 
@@ -45,23 +47,14 @@ public class SweepMonster {
         return true;
     }
 
-    public void run (TilesArray tilesArray) {
-        for(Tile t: tilesArray.getTilesArray()){
-            System.out.println(t.getTile() + " has been clean!");
-        }
-
-        System.out.println("Finish the floor plan");
-
-        // TODO return to the start
-    }
 
     //I tested the navigation/visiting process by going through the whole floor plan zig-zag for now
     //just to show the dynamically fetch the next tile's function is working (Feel free to replace the code inside)
     public void navigation(TilesArray tilesArr) throws InterruptedException {
         Tile currentTile = getFirstTile(tilesArr);
-        while(!(cleanedPosition.size() == tilesArr.getTotal())){
+        while(!(memory.cleanedPositionSize() == tilesArr.getTotal())){
             //After finished cleaning the current tile (I skipped cleaning process here)
-            cleanedPosition.add(currentTile.getXVal()*tilesArr.getScale()+currentTile.getYVal());
+            memory.addCleanedPosition(currentTile.getXVal()*tilesArr.getScale()+currentTile.getYVal());
             System.out.println(currentTile.getTile() + " has been cleaned!");
             //Fake the cleaning time
             TimeUnit.SECONDS.sleep(1);
@@ -171,6 +164,10 @@ public class SweepMonster {
 
     public void setStartY(int startY) {
         this.startY = startY;
+    }
+
+    public void setMemory(RoboMemory memory){
+        this.memory = memory;
     }
 
 }
