@@ -8,14 +8,13 @@ import java.util.List;
 
 public class FloorPlanArray {
 
-    // Max map size is 1000*1000
     private static ArrayList<ArrayList<Tile>> FloorPlanArray = new ArrayList<>();
     private int startX;
     private int startY;
 
-    public void initial(HashMap<Integer, Integer> sizeOfMap) {
-        for (int i = 0; i < sizeOfMap.size(); i++) {
-            FloorPlanArray.add(new ArrayList<Tile>(Collections.nCopies(sizeOfMap.get(i) + 1, null)));
+    public void initial(int maxX, int maxY) {
+        for (int i = 0; i <= maxY; i++) {
+            FloorPlanArray.add(new ArrayList<Tile>(Collections.nCopies(maxX + 1, null)));
         }
     }
 
@@ -51,6 +50,11 @@ public class FloorPlanArray {
     public Tile getTile(int x, int y) {
         return FloorPlanArray.get(y).get(x);
     }
+
+    public boolean isNullTile(int x, int y) {
+        return (FloorPlanArray.get(y).get(x)) == null;
+    }
+
 
     public int getWidth(int y) {
         if (y < 0)

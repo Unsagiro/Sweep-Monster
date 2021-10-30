@@ -26,22 +26,15 @@ public class FloorFileDigestion implements Runnable {
             tilesArray = g.fromJson(reader, TilesArray.class);
 
             //System.out.println(tilesArray);
-            // key is the y value of Tile, value is the max x value of Tile
-            // Use this map to store the width of each y
-            HashMap<Integer, Integer> sizeOfMap = new HashMap<>();
+            int maxX = 0;
+            int maxY = 0;
             if(tilesArray != null){
                 for(Tile t: tilesArray.getTilesArray()) {
-                    if (sizeOfMap.containsKey(t.getYVal())) {
-                        int currentMaxX = sizeOfMap.get(t.getYVal());
-                        if (currentMaxX < t.getXVal()) {
-                            sizeOfMap.put(t.getYVal(), t.getXVal());
-                        }
-                    } else {
-                        sizeOfMap.put(t.getYVal(), t.getXVal());
-                    }
+                    maxX = Math.max(maxX, t.getXVal());
+                    maxY = Math.max(maxY, t.getYVal());
                 }
 
-                floorPlanArray.initial(sizeOfMap);
+                floorPlanArray.initial(maxX, maxY);
 
                 System.out.println("Reading Floor Plan:");
                 for(Tile t: tilesArray.getTilesArray()){
@@ -54,6 +47,7 @@ public class FloorFileDigestion implements Runnable {
                     }
                     System.out.println("Tile " + t.getTile() + ", X: " + t.getX() + ", Y: " + t.getY() + ",Obstacle Type: " + t.getObstacleType() + ",Dirt: " + t.getDirt());
                 }
+                System.out.println("Finish parse the Json!");
             }
 
             else{

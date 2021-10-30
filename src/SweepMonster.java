@@ -64,7 +64,7 @@ public class SweepMonster {
         Stack<Tile> stack = new Stack<>();
 
         stack.add(currentTile);
-        while (stack.empty() != false) {
+        while (!stack.empty()) {
             currentTile = stack.pop();
             currentY = currentTile.getYVal();
             currentX = currentTile.getXVal();
@@ -74,7 +74,7 @@ public class SweepMonster {
             cleanedPosition.add(new Pair<>(currentX, currentY));
             System.out.println(currentTile.getTile() + " has been cleaned!");
             //Fake the cleaning time
-            TimeUnit.SECONDS.sleep(1);
+            TimeUnit.MILLISECONDS.sleep(500);
         }
         System.out.println("The clean is done!");
     }
@@ -176,7 +176,7 @@ public class SweepMonster {
             stack.add(tile);
         }
 
-        if(currentX + 1 < height && isAccessible(currentX, currentY + 1)) {
+        if(currentY + 1 < height && isAccessible(currentX, currentY + 1)) {
             Tile tile = this.floorPlanArray.getTile(currentX, currentY + 1);
             tile.setDirection(Direction.DOWN);
             stack.add(tile);
@@ -184,6 +184,9 @@ public class SweepMonster {
     }
 
     private boolean isAccessible (int x, int y) {
+        if (this.floorPlanArray.isNullTile(x, y)) {
+            return false;
+        }
         Tile tile = this.floorPlanArray.getTile(x, y);
         if (tile.getObstacleType().equals("obstacle")) {
             return false;
