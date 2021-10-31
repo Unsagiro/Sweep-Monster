@@ -47,7 +47,7 @@ public class FloorFileDigestion implements Runnable {
                     }
                     System.out.println("Tile " + t.getTile() + ", X: " + t.getX() + ", Y: " + t.getY() + ",Obstacle Type: " + t.getObstacleType() + ",Dirt: " + t.getDirt());
                 }
-                System.out.println("Finish parse the Json!");
+                System.out.println("Finished parsing the Json file!");
             }
 
             else{
