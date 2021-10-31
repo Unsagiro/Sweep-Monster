@@ -1,0 +1,7 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "c:\\Program Files\\Json\\gson-2.8.2.jar",
+        "c:\\Users\\chino\\OneDrive\\Lib\\javafx.base.jar"
+    ]
+}
