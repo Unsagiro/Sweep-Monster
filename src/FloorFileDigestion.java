@@ -1,6 +1,9 @@
 package src;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 
 import com.google.gson.Gson;
 
@@ -8,6 +11,7 @@ import com.google.gson.Gson;
 public class FloorFileDigestion implements Runnable {
 
     private TilesArray tilesArray;
+    private FloorPlanArray floorPlanArray = new FloorPlanArray();
     public void run()
     {
         Gson g = new Gson();
@@ -22,16 +26,28 @@ public class FloorFileDigestion implements Runnable {
             tilesArray = g.fromJson(reader, TilesArray.class);
 
             //System.out.println(tilesArray);
-
+            int maxX = 0;
+            int maxY = 0;
             if(tilesArray != null){
-                System.out.println("Reading Floor Plan:");
-                for(Tile t: tilesArray.getTilesArray()){
-
-                    System.out.println("Tile " + t.getTile() + ", X: " + t.getX() + ", Y: " + t.getY() + ",Obstacle Type: " + t.getObstacleType() + ",Dirt: " + t.getDirt());
-
-
+                for(Tile t: tilesArray.getTilesArray()) {
+                    maxX = Math.max(maxX, t.getXVal());
+                    maxY = Math.max(maxY, t.getYVal());
                 }
 
+                floorPlanArray.initial(maxX, maxY);
+
+                System.out.println("Reading Floor Plan:");
+                for(Tile t: tilesArray.getTilesArray()){
+                    int x = t.getXVal();
+                    int y = t.getYVal();
+                    floorPlanArray.setTile(x, y, t);
+                    if (t.getChargingStation().equals("true")) {
+                        floorPlanArray.setStartX(x);
+                        floorPlanArray.setStartY(y);
+                    }
+                    System.out.println("Tile " + t.getTile() + ", X: " + t.getX() + ", Y: " + t.getY() + ",Obstacle Type: " + t.getObstacleType() + ",Dirt: " + t.getDirt());
+                }
+                System.out.println("Finish parse the Json!");
             }
 
             else{
@@ -63,5 +79,10 @@ public class FloorFileDigestion implements Runnable {
     public TilesArray getTilesArray() {
         return tilesArray;
     }
+
+    public FloorPlanArray getFloorPlanArray() {
+        return floorPlanArray;
+    }
+
 
 }
