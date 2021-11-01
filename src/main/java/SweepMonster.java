@@ -1,7 +1,4 @@
-package src;
-
 import javafx.util.Pair;
-import src.Direction;
 
 import java.util.*;
 import java.util.concurrent.TimeUnit;
@@ -21,7 +18,7 @@ public class SweepMonster {
 
     private boolean changedToSouth = false;
     private FloorPlanArray floorPlanArray;
-    private ArrayList<Pair<Integer, Integer>> cleanedPosition = new ArrayList<>();
+    private ArrayList<Pair<Integer, Integer>> cleanedPosition = new ArrayList<Pair<Integer, Integer>>();
     private HashMap<Direction, String> neighborMap = new HashMap<Direction, String>();
 
     // return false indicates SweepMonster could not start
@@ -56,7 +53,7 @@ public class SweepMonster {
     public void navigation(FloorPlanArray floorPlanArray) throws InterruptedException {
         this.floorPlanArray = floorPlanArray;
         Tile currentTile = getFirstTile();
-        Stack<Tile> stack = new Stack<>();
+        Stack<Tile> stack = new Stack<Tile>();
 
         stack.add(currentTile);
         while (!stack.empty()) {
@@ -66,13 +63,13 @@ public class SweepMonster {
 
             getNeighbourhood(stack);
             
-            memory.dirtLogWrite(new Pair<>(currentX, currentY), currentTile.getDirt());//stores the dirt in a hashmap
+            memory.dirtLogWrite(new Pair<Integer, Integer>(currentX, currentY), currentTile.getDirt());//stores the dirt in a hashmap
 
-            memory.cleaningProtocol(new Pair<>(currentX, currentY));//cleans using the dirt hashmap as reference
+            memory.cleaningProtocol(new Pair<Integer, Integer>(currentX, currentY));//cleans using the dirt hashmap as reference
 
 
             //After finished cleaning the current tile (I skipped cleaning process here)
-            cleanedPosition.add(new Pair<>(currentX, currentY));
+            cleanedPosition.add(new Pair<Integer, Integer>(currentX, currentY));
             System.out.println(currentTile.getTile() + " has been cleaned!");
             //Fake the cleaning time
             TimeUnit.MILLISECONDS.sleep(500);

@@ -1,5 +1,3 @@
-package src;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -8,13 +6,13 @@ import java.util.List;
 
 public class FloorPlanArray {
 
-    private static ArrayList<ArrayList<Tile>> FloorPlanArray = new ArrayList<>();
+    private static ArrayList<ArrayList<Tile>> FloorPlanArray = new ArrayList<ArrayList<Tile>>();
     private int startX;
     private int startY;
 
     public void initial(int maxX, int maxY) {
         for (int i = 0; i <= maxY; i++) {
-            FloorPlanArray.add(new ArrayList<Tile>(Collections.nCopies(maxX + 1, null)));
+            FloorPlanArray.add(new ArrayList<Tile>(Collections.<Tile>nCopies(maxX + 1, null)));
         }
     }
 

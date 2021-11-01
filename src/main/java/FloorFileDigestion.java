@@ -1,5 +1,3 @@
-package src;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -22,7 +20,7 @@ public class FloorFileDigestion implements Runnable {
             //new Gson Instance
 
             //we create a reader
-            reader = new BufferedReader(new FileReader("./src/Resources/FloorPlanFileTest.json"));
+            reader = new BufferedReader(new FileReader("./src/main/java/Resources/FloorPlanFileTest.json"));
             tilesArray = g.fromJson(reader, TilesArray.class);
 
             //System.out.println(tilesArray);

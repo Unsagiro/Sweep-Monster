@@ -1,5 +1,3 @@
-package src;
-
 import java.util.HashMap;
 
 import javafx.util.Pair;

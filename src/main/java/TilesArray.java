@@ -1,10 +1,5 @@
-package src;
-
-
 import java.util.ArrayList;
 import java.util.List;
-
-
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -14,7 +9,7 @@ public class TilesArray {
 
     @SerializedName("TilesArray")
     @Expose
-    private List<Tile> tilesArray = new ArrayList<>();
+    private List<Tile> tilesArray = new ArrayList<Tile>();
 
     public List<Tile> getTilesArray() {
         return tilesArray;
