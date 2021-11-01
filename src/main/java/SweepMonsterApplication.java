@@ -1,6 +1,3 @@
-package src;
-
-
 public class SweepMonsterApplication{
     public static void main(String[] args) throws InterruptedException {
         System.out.println("Sweep Monster Online!\n");
