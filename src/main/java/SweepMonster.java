@@ -1,5 +1,3 @@
-import javafx.util.Pair;
-
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
@@ -18,7 +16,7 @@ public class SweepMonster {
 
     private boolean changedToSouth = false;
     private FloorPlanArray floorPlanArray;
-    private ArrayList<Pair<Integer, Integer>> cleanedPosition = new ArrayList<Pair<Integer, Integer>>();
+    private ArrayList<Pair> cleanedPosition = new ArrayList<Pair>();
     private HashMap<Direction, String> neighborMap = new HashMap<Direction, String>();
 
     // return false indicates SweepMonster could not start
@@ -43,10 +41,6 @@ public class SweepMonster {
         return true;
     }
 
-  
-
-        
-    
 
     //I tested the navigation/visiting process by going through the whole floor plan zig-zag for now
     //just to show the dynamically fetch the next tile's function is working (Feel free to replace the code inside)
@@ -63,13 +57,13 @@ public class SweepMonster {
 
             getNeighbourhood(stack);
             
-            memory.dirtLogWrite(new Pair<Integer, Integer>(currentX, currentY), currentTile.getDirt());//stores the dirt in a hashmap
+            memory.dirtLogWrite(new Pair(currentX, currentY), currentTile.getDirt());//stores the dirt in a hashmap
 
-            memory.cleaningProtocol(new Pair<Integer, Integer>(currentX, currentY));//cleans using the dirt hashmap as reference
+            memory.cleaningProtocol(new Pair(currentX, currentY));//cleans using the dirt hashmap as reference
 
 
             //After finished cleaning the current tile (I skipped cleaning process here)
-            cleanedPosition.add(new Pair<Integer, Integer>(currentX, currentY));
+            cleanedPosition.add(new Pair(currentX, currentY));
             System.out.println(currentTile.getTile() + " has been cleaned!");
             //Fake the cleaning time
             TimeUnit.MILLISECONDS.sleep(500);
@@ -202,7 +196,7 @@ public class SweepMonster {
     }
 
     private boolean isCleaned (int x, int y) {
-        for (Pair<Integer, Integer> p: cleanedPosition) {
+        for (Pair p: cleanedPosition) {
             if (p.getKey().equals(x) && p.getValue().equals(y)) {
                 return true;
             }
