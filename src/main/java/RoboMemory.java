@@ -1,26 +1,17 @@
 import java.util.HashMap;
 
-import javafx.util.Pair;
-
 public class RoboMemory {
 
 
-    private HashMap<Pair<Integer,Integer>,String> tileDirtness = new HashMap<Pair<Integer,Integer>,String>();
-
-     
-
-////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////
+    private HashMap<Pair,String> tileDirtness = new HashMap<Pair,String>();
 
 
-
-public void dirtLogWrite(Pair<Integer,Integer> position, String dirt){
+public void dirtLogWrite(Pair position, String dirt){
     tileDirtness.put(position, dirt);
     
 }
 
-public void cleaningProtocol(Pair<Integer,Integer> position){
+public void cleaningProtocol(Pair position){
 
     String dirtness = tileDirtness.get(position);
     int newDirtness = Integer.parseInt(dirtness);
@@ -30,16 +21,13 @@ public void cleaningProtocol(Pair<Integer,Integer> position){
         System.out.println("Starting new cleaning cycle..." + "Dirtness left = " + newDirtness);
         
     }
-
 }
 
 
-public String howManyMoreCleans(Pair<Integer,Integer> position){ // returns how many more cleans are needed in this tile
+public String howManyMoreCleans(Pair position){ // returns how many more cleans are needed in this tile
     return tileDirtness.get(position);
 }
 
-
-////////////////////////////////////////////////////////////////////////////////////////
 
 }
 
