@@ -75,7 +75,17 @@ public class FloorPlanArray {
         }
     }
 
-//    public int getTotal() {return tilesArray.size();}
+
+
+    public int getTotalSize() {
+        int count = 0;
+        for (ArrayList<Tile> inner : FloorPlanArray) {
+            for (Tile t : inner) {
+                count++;
+            }
+        }
+        return count;
+    }
 
     //help get particular tile info
 //    public Tile getTileInfo(int x, int y){return tilesArray.get(getScale()*x+y);}
