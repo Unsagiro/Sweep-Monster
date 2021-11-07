@@ -57,15 +57,19 @@ public class SweepMonster {
         Stack<Tile> stack = new Stack<Tile>();
 
         stack.add(currentTile);
+        
         while (!stack.empty()) {
-            if(currentBattery <= 25 || currentDirtCapacity <= 0) {
-                System.out.println("Returning to Charging Station now...");
+            if(memory.batteryCheck(currentBattery, currentUnitsCharge) || currentDirtCapacity <= 0) {
+                //Here we start the method to go back to closest charging station
+                goBack();
+                System.out.println("Ready to continue...");
                 break;
             }
             //moving to next tile, deduct corresponding units of battery
             if(isFirstTile) isFirstTile = false;
             else currentBattery = currentBattery - currentUnitsCharge;
-
+            // we need to check how we will define this part after recharging
+            memory.setPathMemory(currentTile);// We store our steps in memory so we can go back 
             currentTile = stack.pop();
             currentY = currentTile.getYVal();
             currentX = currentTile.getXVal();
@@ -248,6 +252,42 @@ public class SweepMonster {
     private float calcUnitsCharge(String currentSurface, String nextSurface){
         return ((float)batteryConsume.get(currentSurface) + (float)batteryConsume.get(nextSurface))/2;
     }
+
+    private void goBack() throws InterruptedException
+        {
+        System.out.println("Homecoming protocols initialiazed...");
+        TimeUnit.SECONDS.sleep(1);
+         while(!(memory.pathMemoryEmpty()))
+            {
+                Tile memoryTile = memory.popPathMemory();
+                
+                
+                TimeUnit.MILLISECONDS.sleep(500);
+
+                if (memory.pathMemoryEmpty())
+                    {
+                        System.out.println("Charging Station reached, power source adquired");
+                        System.out.println("Recharging...25%\n");
+                        TimeUnit.SECONDS.sleep(1);
+                        System.out.println("Recharging...50%\n");
+                        TimeUnit.SECONDS.sleep(1);
+                        System.out.println("Recharging...75%\n");
+                        TimeUnit.SECONDS.sleep(1);
+                        System.out.println("Recharging...100%\n");
+                        System.out.println("Charged up and ready to clean!\n");
+                        setCurrentBattery(250);
+                        setStartX(memoryTile.getXVal());// I set the new charging station start point
+                        setStartY(memoryTile.getYVal());
+                        break;
+                    }
+                System.out.println("Tracing back to Charging Station... Current Tile is " + memoryTile.getTile());
+
+            }
+
+
+         }
+
+
 }
 
 
