@@ -11,16 +11,36 @@ public void dirtLogWrite(Pair position, String dirt){
     
 }
 
-public void cleaningProtocol(Pair position){
+public int cleaningProtocol(Pair position, float currentBattery, float currentUnitsCharge, int currentDirtCapacity){
 
     String dirtness = tileDirtness.get(position);
     int newDirtness = Integer.parseInt(dirtness);
-    System.out.println("Cleaning..."); 
-    while(newDirtness != 0 ){
-        newDirtness = newDirtness - 1;
-        System.out.println("Starting new cleaning cycle..." + "Dirtness left = " + newDirtness);
-        
+    int totalVacuums = 0;
+    float curBattery = currentBattery;
+    int curDirt = currentDirtCapacity;
+    System.out.println("Cleaning...");
+    if(newDirtness == 0){
+        System.out.println("No more dirt here!");
+        System.out.println("Current Battery:" + curBattery);
+        return totalVacuums;
     }
+    while(newDirtness != 0 && curBattery > 25 && curDirt > 0){
+        newDirtness = newDirtness - 1;
+        totalVacuums = totalVacuums + 1;
+        curBattery = curBattery - currentUnitsCharge;
+        curDirt = curDirt-1;
+        System.out.println("Start Vacuum " + totalVacuums + "... Dirtness left = " + newDirtness);
+        System.out.println("Current Battery:" + curBattery + " | Current Dirt Capacity:" + curDirt);
+        //SPECIAL INDICATOR
+        if(curDirt <= 0){
+            System.out.println("Warning: The dirt-container is full!EMPTY ME!");
+            return totalVacuums;
+        }
+        if(curBattery <= 25){//feel free to change the lower bound of the battery
+            return totalVacuums;
+        }
+    }
+    return totalVacuums;
 }
 
 
