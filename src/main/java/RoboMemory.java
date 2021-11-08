@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Stack;
 
 public class RoboMemory {
@@ -9,6 +10,7 @@ private Pair closestCS;
 
 private HashMap<Pair,String> tileDirtness = new HashMap<Pair,String>();
 private Stack<Tile> pathMemory = new Stack<Tile>(); // here we store the steps to go back to our CS
+private LinkedList<Tile> pathMemory2 = new LinkedList();
 
 public void dirtLogWrite(Pair position, String dirt){
     tileDirtness.put(position, dirt);
@@ -85,9 +87,18 @@ public boolean batteryCheck(float currentBattery, float currentUnitsCharge){
 
     public void setPathMemory(Tile tile) {
         pathMemory.push(tile);
+        pathMemory2.add(tile);
     }
     public boolean pathMemoryEmpty(){
         return pathMemory.empty();
+    }
+
+    public int pathMemorySize(){
+    return pathMemory2.size();
+    }
+
+    public Tile getMemory2(int i){
+        return pathMemory2.get(i);
     }
 
 }

@@ -222,6 +222,7 @@ public class SweepMonster {
             return false;
         }
         Tile tile = this.floorPlanArray.getTile(x, y);
+        //if (tile.getObstacleType().equals("obstacle")||tile.getObstacleType().equals("object")||tile.getObstacleType().equals("stairs"))
         if (tile.getObstacleType().equals("obstacle")) {
             return false;
         }
@@ -255,9 +256,33 @@ public class SweepMonster {
 
     private void goBack() throws InterruptedException
         {
-        System.out.println("Homecoming protocols initialiazed...");
+        System.out.println("Homecoming protocols initialized...");
         TimeUnit.SECONDS.sleep(1);
-         while(!(memory.pathMemoryEmpty()))
+        for(int i=memory.pathMemorySize()-1;i>0;i--){
+            Tile memoryTile = memory.getMemory2(i);
+
+            System.out.println("Tracing back to Charging Station... Current Tile is " + memoryTile.getTile());
+            TimeUnit.MILLISECONDS.sleep(500);
+
+            if(i==1){
+                System.out.println("Charging Station reached, power source adquired");
+                System.out.println("Recharging...25%\n");
+                TimeUnit.SECONDS.sleep(1);
+                System.out.println("Recharging...50%\n");
+                TimeUnit.SECONDS.sleep(1);
+                System.out.println("Recharging...75%\n");
+                TimeUnit.SECONDS.sleep(1);
+                System.out.println("Recharging...100%\n");
+                System.out.println("Charged up and ready to clean!\n");
+                setCurrentBattery(250);
+                setStartX(memoryTile.getXVal());// I set the new charging station start point
+                setStartY(memoryTile.getYVal());
+                break;
+            }
+        }
+
+
+        /* while(!(memory.pathMemoryEmpty()))
             {
                 Tile memoryTile = memory.popPathMemory();
                 
@@ -282,7 +307,7 @@ public class SweepMonster {
                     }
                 System.out.println("Tracing back to Charging Station... Current Tile is " + memoryTile.getTile());
 
-            }
+            }*/
 
 
          }
