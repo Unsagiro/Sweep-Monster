@@ -6,7 +6,7 @@ public class SweepMonster {
     private static final int MAX_DIRT_CAPACITY = 50;
 
     private float currentBattery;
-    private int currentDirtCapacity;
+    private static int currentDirtCapacity;
     private Direction currentDirection;
     private int startX;
     private int startY;
@@ -16,10 +16,8 @@ public class SweepMonster {
     private float currentUnitsCharge;
     private boolean isFirstTile = false;
 
-    private boolean changedToSouth = false;
-    private FloorPlanArray floorPlanArray;
+    private FloorPlanArray floorPlanArray = null;
     private ArrayList<Pair> cleanedPosition = new ArrayList<Pair>();
-    private HashMap<Direction, String> neighborMap = new HashMap<Direction, String>();
     private HashMap<String, Integer> batteryConsume = new HashMap<String, Integer>();
 
     // return false indicates SweepMonster could not start
@@ -51,21 +49,28 @@ public class SweepMonster {
     //just to show the dynamically fetch the next tile's function is working (Feel free to replace the code inside)
     public void navigation(FloorPlanArray floorPlanArray) throws InterruptedException {
         this.floorPlanArray = floorPlanArray;
+        navigation();
+    }
+    public void navigation() throws InterruptedException {
         Tile currentTile = getFirstTile();
         isFirstTile = true;
         currentUnitsCharge = batteryConsume.get(currentTile.getFloorType());
         Stack<Tile> stack = new Stack<Tile>();
 
         stack.add(currentTile);
+        
         while (!stack.empty()) {
-            if(currentBattery <= 25 || currentDirtCapacity <= 0) {
-                System.out.println("Returning to Charging Station now...");
+            if(memory.batteryCheck(currentBattery, currentUnitsCharge) || currentDirtCapacity <= 0) {
+                //Here we start the method to go back to closest charging station
+                goBack();
+                System.out.println("Ready to continue...");
                 break;
             }
             //moving to next tile, deduct corresponding units of battery
             if(isFirstTile) isFirstTile = false;
             else currentBattery = currentBattery - currentUnitsCharge;
-
+            // we need to check how we will define this part after recharging
+            memory.setPathMemory(currentTile);// We store our steps in memory so we can go back 
             currentTile = stack.pop();
             currentY = currentTile.getYVal();
             currentX = currentTile.getXVal();
@@ -88,43 +93,23 @@ public class SweepMonster {
             }
             getNeighbourhood(stack, currentTile);
             //Fake the cleaning time
-            TimeUnit.MILLISECONDS.sleep(500);
+            TimeUnit.MILLISECONDS.sleep(100);
         }
-        if(cleanedPosition.size() == floorPlanArray.getTotalSize()) System.out.println("The cleaning is done!");
-    }
-
-    //Sensor Simulation Here
-
-    //    function for calling the simulator to fetch the next step's tile object dynamically
-//    If next step is out of the floor plan, return null for next step's tile
-    public Tile getNextTileInfo(TilesArray TilesArr){
-        int bound = TilesArr.getScale()-1;
-        Tile tile = null;
-        switch (currentDirection) {
-            case UP:
-                if(currentX-1 >= 0) tile=TilesArr.getTileInfo(currentX-1, currentY);
-                break;
-            case RIGHT:
-                if(currentY+1 <= bound) tile = TilesArr.getTileInfo(currentX, currentY+1);
-                break;
-            case DOWN:
-                if(currentX+1 <= bound) tile = TilesArr.getTileInfo(currentX+1, currentY);
-                break;
-            case LEFT:
-                if(currentY-1 >= 0) tile = TilesArr.getTileInfo(currentX, currentY-1);
-                break;
-            default:
-                break;
+        if(cleanedPosition.size() == floorPlanArray.getTotalSize()) {
+            System.out.println("The cleaning is done!");
         }
-        return tile;
     }
 
-    //blocked tile identifier
-    public boolean isBlocked(Tile t){
-        if(t.getObstacleType().equals("open")) return false;
-        else return true;
+    public static boolean cleanDirt() {
+        while (true) {
+            System.out.println("Press \"ENTER\" to continue...");
+            Scanner scanner = new Scanner(System.in);
+            if (scanner.hasNextLine()) {
+                currentDirtCapacity = 50;
+                return true;
+            }
+        }
     }
-
     public float getCurrentBattery() {
         return currentBattery;
     }
@@ -247,6 +232,47 @@ public class SweepMonster {
 
     private float calcUnitsCharge(String currentSurface, String nextSurface){
         return ((float)batteryConsume.get(currentSurface) + (float)batteryConsume.get(nextSurface))/2;
+    }
+
+    private void goBack() throws InterruptedException
+        {
+        System.out.println("Homecoming protocols initialiazed...");
+        TimeUnit.SECONDS.sleep(1);
+         while(!(memory.pathMemoryEmpty()))
+            {
+                Tile memoryTile = memory.popPathMemory();
+                
+                
+                TimeUnit.MILLISECONDS.sleep(500);
+
+                if (memory.pathMemoryEmpty())
+                    {
+                        System.out.println("Charging Station reached, power source adquired");
+                        System.out.println("Recharging...25%\n");
+                        TimeUnit.SECONDS.sleep(1);
+                        System.out.println("Recharging...50%\n");
+                        TimeUnit.SECONDS.sleep(1);
+                        System.out.println("Recharging...75%\n");
+                        TimeUnit.SECONDS.sleep(1);
+                        System.out.println("Recharging...100%\n");
+                        System.out.println("Charged up and ready to clean!\n");
+                        setCurrentBattery(250);
+                        setStartX(memoryTile.getXVal());// I set the new charging station start point
+                        setStartY(memoryTile.getYVal());
+                        break;
+                    }
+                System.out.println("Tracing back to Charging Station... Current Tile is " + memoryTile.getTile());
+
+            }
+
+            resume();
+         }
+
+         // Move to the last uncleaned position and resume the cleaning work
+    private void resume() throws InterruptedException
+    {
+        System.out.println("Continue the cleaning work...");
+        navigation();
     }
 }
 

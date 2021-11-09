@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
+
 
 
 public class FloorPlanArray {
@@ -35,6 +34,8 @@ public class FloorPlanArray {
     public Tile getStartTile() {
         return FloorPlanArray.get(startY).get(startX);
     }
+
+    
 
     public ArrayList<ArrayList<Tile>> getFloorPlanArray() {
         return FloorPlanArray;
