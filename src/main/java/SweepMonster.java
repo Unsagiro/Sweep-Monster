@@ -60,20 +60,29 @@ public class SweepMonster {
         stack.add(currentTile);
         
         while (!stack.empty()) {
+            currentTile = stack.peek();
+            currentY = currentTile.getYVal();
+            currentX = currentTile.getXVal();
+
+            if (isCleaned(currentX, currentY)) {
+                stack.pop();
+                continue;
+            }
+
             if(memory.batteryCheck(currentBattery, currentUnitsCharge) || currentDirtCapacity <= 0) {
                 //Here we start the method to go back to closest charging station
                 goBack();
                 System.out.println("Ready to continue...");
-                break;
+//                break;
+                resume();
             }
             //moving to next tile, deduct corresponding units of battery
             if(isFirstTile) isFirstTile = false;
             else currentBattery = currentBattery - currentUnitsCharge;
             // we need to check how we will define this part after recharging
             memory.setPathMemory(currentTile);// We store our steps in memory so we can go back 
-            currentTile = stack.pop();
-            currentY = currentTile.getYVal();
-            currentX = currentTile.getXVal();
+            stack.pop();
+
             System.out.println();
             System.out.println("Now at tile " + currentTile.getTile() + ", Current Battery: " + currentBattery);
 
@@ -95,9 +104,10 @@ public class SweepMonster {
             //Fake the cleaning time
             TimeUnit.MILLISECONDS.sleep(100);
         }
-        if(cleanedPosition.size() == floorPlanArray.getTotalSize()) {
+
+//        if(cleanedPosition.size() == floorPlanArray.getTotalSize()) {
             System.out.println("The cleaning is done!");
-        }
+//        }
     }
 
     public static boolean cleanDirt() {
@@ -203,14 +213,13 @@ public class SweepMonster {
             return false;
         }
         Tile tile = this.floorPlanArray.getTile(x, y);
-        if (tile.getObstacleType().equals("obstacle")) {
+        if (!tile.getObstacleType().equals("open")) {
             return false;
         }
         if (isCleaned(x, y)) {
             return false;
         }
-        // TODO check power
-        // TODO check dirt capacity
+
         return true;
     }
 
@@ -243,7 +252,7 @@ public class SweepMonster {
                 Tile memoryTile = memory.popPathMemory();
                 
                 
-                TimeUnit.MILLISECONDS.sleep(500);
+                TimeUnit.MILLISECONDS.sleep(10);
 
                 if (memory.pathMemoryEmpty())
                     {
@@ -265,7 +274,6 @@ public class SweepMonster {
 
             }
 
-            resume();
          }
 
          // Move to the last uncleaned position and resume the cleaning work
