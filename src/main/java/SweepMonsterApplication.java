@@ -13,7 +13,7 @@ public class SweepMonsterApplication{
         RoboMemory memory = new RoboMemory();
 
         SweepMonster robot = new SweepMonster();
-        if (!robot.init(100,150, Direction.RIGHT, 0, 0,  memory)){
+        if (!robot.init(250,50, Direction.RIGHT, 0, 0,  memory)){
             System.out.println("Something is wrong, cannot start the cleaning cycle!");
         }else{
             System.out.println("\nLet's clean this up!");

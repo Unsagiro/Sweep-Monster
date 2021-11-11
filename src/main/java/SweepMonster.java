@@ -73,8 +73,8 @@ public class SweepMonster {
                 //Here we start the method to go back to closest charging station
                 goBack();
                 System.out.println("Ready to continue...");
+                System.out.println("Continue the cleaning work...");
 //                break;
-                resume();
             }
             //moving to next tile, deduct corresponding units of battery
             if(isFirstTile) isFirstTile = false;
@@ -112,14 +112,15 @@ public class SweepMonster {
 
     public static boolean cleanDirt() {
         while (true) {
-            System.out.println("Press \"ENTER\" to continue...");
+            System.out.println("Press \"ENTER\" to EMPTY the dirt-container...");
             Scanner scanner = new Scanner(System.in);
             if (scanner.hasNextLine()) {
-                currentDirtCapacity = 50;
+                currentDirtCapacity = MAX_DIRT_CAPACITY;
                 return true;
             }
         }
     }
+
     public float getCurrentBattery() {
         return currentBattery;
     }
@@ -275,13 +276,6 @@ public class SweepMonster {
             }
 
          }
-
-         // Move to the last uncleaned position and resume the cleaning work
-    private void resume() throws InterruptedException
-    {
-        System.out.println("Continue the cleaning work...");
-        navigation();
-    }
 }
 
 
