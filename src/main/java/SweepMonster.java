@@ -49,9 +49,6 @@ public class SweepMonster {
     //just to show the dynamically fetch the next tile's function is working (Feel free to replace the code inside)
     public void navigation(FloorPlanArray floorPlanArray) throws InterruptedException {
         this.floorPlanArray = floorPlanArray;
-        navigation();
-    }
-    public void navigation() throws InterruptedException {
         Tile currentTile = getFirstTile();
         isFirstTile = true;
         currentUnitsCharge = batteryConsume.get(currentTile.getFloorType());
@@ -69,6 +66,10 @@ public class SweepMonster {
                 continue;
             }
 
+            if (isBlocked(currentTile)) {
+                System.out.println("I'M BLOCKED!!!");
+                return;
+            }
             if(memory.batteryCheck(currentBattery, currentUnitsCharge) || currentDirtCapacity <= 0) {
                 //Here we start the method to go back to closest charging station
                 goBack();
@@ -102,7 +103,7 @@ public class SweepMonster {
             }
             getNeighbourhood(stack, currentTile);
             //Fake the cleaning time
-            TimeUnit.MILLISECONDS.sleep(100);
+            TimeUnit.MILLISECONDS.sleep(500);
         }
 
 //        if(cleanedPosition.size() == floorPlanArray.getTotalSize()) {
@@ -234,6 +235,48 @@ public class SweepMonster {
         return false;
     }
 
+    private boolean isBlocked (Tile curTile) {
+        // Check if current tile is obstacle
+        if (curTile.getObstacleType().equals("obstacle")) {
+            return true;
+        }
+
+        int height = this.floorPlanArray.getHeight();
+
+        // Check if current Tile is blocked by obstacles
+        int x = curTile.getXVal();
+        int y = curTile.getYVal();
+        if(x - 1 >= 0) {
+            Tile tile = this.floorPlanArray.getTile(x - 1, y);
+            if (!tile.getObstacleType().equals("obstacle")) {
+                return false;
+            }
+        }
+
+        if(x + 1 < this.floorPlanArray.getWidth(y)) {
+            Tile tile = this.floorPlanArray.getTile(x + 1, y);
+            if (!tile.getObstacleType().equals("obstacle")) {
+                return false;
+            }
+        }
+
+        if(y - 1 >= 0) {
+            Tile tile = this.floorPlanArray.getTile(x, y - 1);
+            if (!tile.getObstacleType().equals("obstacle")) {
+                return false;
+            }
+        }
+
+        if(y + 1 < height) {
+            Tile tile = this.floorPlanArray.getTile(x, y + 1);
+            if (!tile.getObstacleType().equals("obstacle")) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     private void batteryConsumeFilling(){
         batteryConsume.put("Bare", 1);
         batteryConsume.put("lowPile", 2);
@@ -253,7 +296,7 @@ public class SweepMonster {
                 Tile memoryTile = memory.popPathMemory();
                 
                 
-                TimeUnit.MILLISECONDS.sleep(10);
+                TimeUnit.MILLISECONDS.sleep(500);
 
                 if (memory.pathMemoryEmpty())
                     {

@@ -39,6 +39,7 @@ public int cleaningProtocol(Pair position, float currentBattery, float currentUn
         //SPECIAL INDICATOR
         if(curDirt <= 0){
             System.out.println("Warning: The dirt-container is full!EMPTY ME!");
+            // Press Enter to empty the dirt-container
             if (SweepMonster.cleanDirt()) {
                 continue;
 //            return totalVacuums
