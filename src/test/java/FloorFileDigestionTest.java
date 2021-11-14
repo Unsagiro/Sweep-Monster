@@ -4,8 +4,9 @@ public class FloorFileDigestionTest {
 
 @Test
 void test(){
-    FloorFileDigestion digest = new FloorFileDigestion();
-    digest.run();
+    System.out.println("this test runs");
+
+
 
 }
 
