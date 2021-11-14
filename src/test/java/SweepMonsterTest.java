@@ -3,7 +3,7 @@ import org.junit.Test;
 public class SweepMonsterTest {
    
     @Test
-void test(){
+public void test(){
     System.out.println("this test runs");
 
 
