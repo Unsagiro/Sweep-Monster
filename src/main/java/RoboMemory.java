@@ -15,9 +15,6 @@ public void dirtLogWrite(Pair position, String dirt){
     tileDirtness.put(position, dirt);
     
 }
-
-
-
 // returns how many more cleans are needed in this tile
 public String howManyMoreCleans(Pair position){ 
     return tileDirtness.get(position);

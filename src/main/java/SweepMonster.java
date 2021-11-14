@@ -100,17 +100,29 @@ public class SweepMonster {
             if(vacuums == Integer.parseInt(currentTile.getDirt())) {
                 cleanedPosition.add(new Pair(currentX, currentY));
                 System.out.println(currentTile.getTile() + " has been cleaned!");
-            }else{//still with left dirt on that tile
-                //System.out.println("Returning to Charging Station now...");
             }
             getNeighbourhood(stack, currentTile);
             //Fake the cleaning time
             TimeUnit.MILLISECONDS.sleep(500);
-        }
 
-      if(cleanedPosition.size() == floorPlanArray.getTotalSize()) {
-            System.out.println("The cleaning is done!");
-       }
+         
+
+
+
+        }
+        /* CHECK HERE FOR THE FLOOR PLAN SIZE AND CLEANED TOTAL
+        //Here I am checking  at what point th
+        //if(cleanedPosition.size() >= floorPlanArray.getTotalSize()) {
+            Integer x =  cleanedPosition.size();
+            String y = x.toString();
+            System.out.println(y);
+            Integer z =  floorPlanArray.getTotalSize();
+            String f = z.toString();
+            System.out.println(f);
+        */
+            System.out.println("The Floor plan is clean!!!!!");
+       // }
+  
     }
 
     public static boolean cleanDirt() {
@@ -302,10 +314,12 @@ public class SweepMonster {
             //SPECIAL INDICATOR
            
             if(curDirt <= 0){
-                System.out.println("Warning: The dirt-container is full!EMPTY ME!");
-                // Press Enter to empty the dirt-container
-                goBack();
-                    continue;
+                System.out.println("Warning: The dirt-container is full!!");
+                // Press Enter to empty the dirt-container\
+                cleanDirt();
+                System.out.println("Dirt Capacity is good...resuming cleaning!");
+                continue;
+                
     //            return totalVacuums
                 }
             
@@ -315,18 +329,6 @@ public class SweepMonster {
         }
         return totalVacuums;
     }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     private void batteryConsumeFilling(){
