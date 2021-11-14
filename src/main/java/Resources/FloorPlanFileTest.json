@@ -81,7 +81,7 @@
       "rightTile":"B3",
       "downTile":"A2",
       "leftTile":"B1",
-      "obstacleType": "obstacle",
+      "obstacleType": "Obstacle",
       "chargingStation":"false",
       "floorType": "highPile",
       "dirt": "2"

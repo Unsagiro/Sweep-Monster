@@ -21,7 +21,7 @@ public String howManyMoreCleans(Pair position){
 }
 // This function checks if we can go back with the battery we got
 public boolean batteryCheck(float currentBattery, float currentUnitsCharge){  
-  if((pathMemory.size() + 10)  < (currentBattery - currentUnitsCharge))
+  if((pathMemory.size() + 50)  < (currentBattery - currentUnitsCharge))
     {
         return false;
     }
@@ -57,21 +57,5 @@ public boolean batteryCheck(float currentBattery, float currentUnitsCharge){
     public boolean pathMemoryEmpty(){
         return pathMemory.empty();
     }
-
-
-    /**
-     * @return boolean return the goBackFlag
-     */
-    public boolean isGoBackFlag() {
-        return goBackFlag;
-    }
-
-    /**
-     * @param goBackFlag the goBackFlag to set
-     */
-    public void setGoBackFlag(boolean goBackFlag) {
-        this.goBackFlag = goBackFlag;
-    }
-
 }
 
