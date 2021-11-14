@@ -16,7 +16,7 @@
       "obstacleType": "open",
       "chargingStation":"true",
       "floorType": "highPile",
-      "dirt": "3"
+      "dirt": "5"
     },
 
     {
@@ -30,7 +30,7 @@
       "obstacleType": "open",
       "chargingStation":"false",
       "floorType": "highPile",
-      "dirt": "1"
+      "dirt": "5"
     },
     {
       "tile":"A3",
@@ -71,7 +71,7 @@
       "obstacleType": "open",
       "chargingStation":"false",
       "floorType": "highPile",
-      "dirt": "0"
+      "dirt": "5"
     },
     {
       "tile":"B2",
@@ -149,7 +149,7 @@
       "obstacleType": "open",
       "chargingStation":"false",
       "floorType": "highPile",
-      "dirt": "1"
+      "dirt": "5"
 
     },
     {
@@ -163,7 +163,7 @@
       "obstacleType": "stairs",
       "chargingStation":"false",
       "floorType": "highPile",
-      "dirt": "1"
+      "dirt": "5"
 
     },
     {
@@ -190,7 +190,7 @@
       "obstacleType": "open",
       "chargingStation":"false",
       "floorType": "highPile",
-      "dirt": "0"
+      "dirt": "5"
     },
     {
       "tile":"D3",
@@ -231,7 +231,7 @@
       "obstacleType": "open",
       "chargingStation":"false",
       "floorType": "lowPile",
-      "dirt": "0"
+      "dirt": "5"
     },
     {
       "tile":"E2",
@@ -257,7 +257,7 @@
       "obstacleType": "open",
       "chargingStation":"false",
       "floorType": "lowPile",
-      "dirt": "1"
+      "dirt": "5"
 
     },
     {
@@ -311,7 +311,7 @@
       "obstacleType": "open",
       "chargingStation":"false",
       "floorType": "lowPile",
-      "dirt": "1"
+      "dirt": "5"
 
     },
     {

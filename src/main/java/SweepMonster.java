@@ -61,6 +61,14 @@ public class SweepMonster {
             currentY = currentTile.getYVal();
             currentX = currentTile.getXVal();
 
+            if(memory.batteryCheck(currentBattery, currentUnitsCharge) || currentDirtCapacity <= 0) {
+                //Here we start the method to go back to closest charging station
+                goBack();
+                System.out.println("Ready to continue...");
+                System.out.println("Continue the cleaning work...");
+//                break;
+            }
+
             if (isCleaned(currentX, currentY)) {
                 stack.pop();
                 continue;
@@ -70,13 +78,7 @@ public class SweepMonster {
                 System.out.println("I'M BLOCKED!!!");
                 return;
             }
-            if(memory.batteryCheck(currentBattery, currentUnitsCharge) || currentDirtCapacity <= 0) {
-                //Here we start the method to go back to closest charging station
-                goBack();
-                System.out.println("Ready to continue...");
-                System.out.println("Continue the cleaning work...");
-//                break;
-            }
+         
             //moving to next tile, deduct corresponding units of battery
             if(isFirstTile) isFirstTile = false;
             else currentBattery = currentBattery - currentUnitsCharge;
@@ -89,7 +91,7 @@ public class SweepMonster {
 
             memory.dirtLogWrite(new Pair(currentX, currentY), currentTile.getDirt());//stores the dirt in a hashmap
 
-            int vacuums = memory.cleaningProtocol(new Pair(currentX, currentY), currentBattery, currentUnitsCharge, currentDirtCapacity);//cleans using the dirt hashmap as reference
+            int vacuums = cleaningProtocol(new Pair(currentX, currentY), currentBattery, currentUnitsCharge, currentDirtCapacity,memory);//cleans using the dirt hashmap as reference
 
             currentBattery = currentBattery - vacuums * currentUnitsCharge;
             currentDirtCapacity = currentDirtCapacity - vacuums;
@@ -106,9 +108,9 @@ public class SweepMonster {
             TimeUnit.MILLISECONDS.sleep(500);
         }
 
-//        if(cleanedPosition.size() == floorPlanArray.getTotalSize()) {
+      if(cleanedPosition.size() == floorPlanArray.getTotalSize()) {
             System.out.println("The cleaning is done!");
-//        }
+       }
     }
 
     public static boolean cleanDirt() {
@@ -277,6 +279,56 @@ public class SweepMonster {
         return true;
     }
 
+    public int cleaningProtocol(Pair position, float currentBattery, float currentUnitsCharge, int currentDirtCapacity, RoboMemory memory) throws InterruptedException{
+
+        String dirtness = memory.tileDirtness.get(position);
+        int newDirtness = Integer.parseInt(dirtness);
+        int totalVacuums = 0;
+        float curBattery = currentBattery;
+        int curDirt = currentDirtCapacity;
+        System.out.println("Cleaning...");
+        if(newDirtness == 0){
+            System.out.println("No more dirt here!");
+            System.out.println("Current Battery:" + curBattery);
+            return totalVacuums;
+        }
+        while(newDirtness != 0 && curBattery > 25 && curDirt > 0){
+            newDirtness = newDirtness - 1;
+            totalVacuums = totalVacuums + 1;
+            curBattery = curBattery - currentUnitsCharge;
+            curDirt = curDirt-1;
+            System.out.println("Start Vacuum " + totalVacuums + "... Dirtness left = " + newDirtness);
+            System.out.println("Current Battery:" + curBattery + " | Current Dirt Capacity:" + curDirt);
+            //SPECIAL INDICATOR
+           
+            if(curDirt <= 0){
+                System.out.println("Warning: The dirt-container is full!EMPTY ME!");
+                // Press Enter to empty the dirt-container
+                goBack();
+                    continue;
+    //            return totalVacuums
+                }
+            
+            if(curBattery <= 25){//feel free to change the lower bound of the battery
+                return totalVacuums;
+            }
+        }
+        return totalVacuums;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     private void batteryConsumeFilling(){
         batteryConsume.put("Bare", 1);
         batteryConsume.put("lowPile", 2);
@@ -287,7 +339,7 @@ public class SweepMonster {
         return ((float)batteryConsume.get(currentSurface) + (float)batteryConsume.get(nextSurface))/2;
     }
 
-    private void goBack() throws InterruptedException
+    public void goBack() throws InterruptedException
         {
         System.out.println("Homecoming protocols initialiazed...");
         TimeUnit.SECONDS.sleep(1);
@@ -312,6 +364,8 @@ public class SweepMonster {
                         setCurrentBattery(250);
                         setStartX(memoryTile.getXVal());// I set the new charging station start point
                         setStartY(memoryTile.getYVal());
+                        System.out.println("Warning: The dirt-container is full!EMPTY ME!");
+                        SweepMonster.cleanDirt();
                         break;
                     }
                 System.out.println("Tracing back to Charging Station... Current Tile is " + memoryTile.getTile());
