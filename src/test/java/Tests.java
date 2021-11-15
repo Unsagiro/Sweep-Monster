@@ -46,12 +46,6 @@ assertNotNull(robot.getCurrentBattery());
 
 }
 
-@Test
-public void  nulltest3(){
-
-    assertNotNull(robot.getCurrentDirection());   
-
-}
  
 @Test
 public void  nulltest4(){
